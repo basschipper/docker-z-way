@@ -12,7 +12,7 @@ RUN apt-get update -y \
     libarchive13 \
     libavahi-compat-libdnssd-dev \
     libc-ares2 \
-    libcurl3 \
+    libcurl4 \
     libssl-dev \
   && apt-get clean \
   && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* \
