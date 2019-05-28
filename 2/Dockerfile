@@ -4,7 +4,7 @@ MAINTAINER Rui Marinho <ruipmarinho@gmail.com> (@ruimarinho)
 
 ENV LD_LIBRARY_PATH=/opt/z-way-server/libs
 ENV PATH=/opt/z-way-server:$PATH
-ENV ZWAY_VERSION=2.3.7
+ENV ZWAY_VERSION=2.3.8
 
 RUN apt-get update -y \
   && apt-get install -y \
