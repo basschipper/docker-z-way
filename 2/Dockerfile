@@ -1,26 +1,33 @@
-FROM ubuntu:rolling
+FROM ubuntu:bionic
 
 MAINTAINER Rui Marinho <ruipmarinho@gmail.com> (@ruimarinho)
 
 ENV LD_LIBRARY_PATH=/opt/z-way-server/libs
 ENV PATH=/opt/z-way-server:$PATH
+ENV DEBIAN_FRONTEND noninteractive
 ENV ZWAY_VERSION=2.3.8
 
-RUN apt-get update -y \
-  && apt-get install -y \
-    curl \
-    libarchive13 \
-    libavahi-compat-libdnssd-dev \
-    libc-ares2 \
-    libcurl4 \
-    libssl-dev \
-  && apt-get clean \
-  && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* \
-  && ln -s /usr/lib/x86_64-linux-gnu/libarchive.so.13 /usr/lib/x86_64-linux-gnu/libarchive.so.12
+#install deps
+RUN apt-get -y update \
+    && apt-get -y upgrade \
+    && apt-get -y install 
+        sharutils \
+        tzdata \
+        gawk \
+        libc-ares2 \
+        wget \
+        libssl1.0.0 \
+        libavahi-compat-libdnssd-dev \
+        libcurl3 \
+        libcurl-openssl1.0-dev \
+        libarchive13
+    && apt-get -y autoremove && apt-get -y autoclean \
+    && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-RUN curl -SLO https://razberry.z-wave.me/z-way-server/z-way-server-Ubuntu-v${ZWAY_VERSION}.tgz \
-  && tar -zxvf z-way-server-Ubuntu-v${ZWAY_VERSION}.tgz -C /opt \
-  && rm z-way-server-Ubuntu-v${ZWAY_VERSION}.tgz
+#install z-way-server
+RUN wget http://razberry.z-wave.me/z-way-server/z-way-server-Ubuntu-v${ZWAY_VERSION}.tgz \
+    && tar -vzxf z-way-server-Ubuntu-v${ZWAY_VERSION}.tgz -C /opt \
+    && rm z-way-server-Ubuntu-v${ZWAY_VERSION}.tgz
 
 EXPOSE 8083
 
