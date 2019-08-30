@@ -5,12 +5,12 @@ MAINTAINER Rui Marinho <ruipmarinho@gmail.com> (@ruimarinho)
 ENV LD_LIBRARY_PATH=/opt/z-way-server/libs
 ENV PATH=/opt/z-way-server:$PATH
 ENV DEBIAN_FRONTEND noninteractive
-ENV ZWAY_VERSION=2.3.8
+ENV ZWAY_VERSION=3.0.0
 
 #install deps
 RUN apt-get -y update \
     && apt-get -y upgrade \
-    && apt-get -y install 
+    && apt-get -y install \
         sharutils \
         tzdata \
         gawk \
@@ -20,7 +20,7 @@ RUN apt-get -y update \
         libavahi-compat-libdnssd-dev \
         libcurl3 \
         libcurl-openssl1.0-dev \
-        libarchive13
+        libarchive13 \
     && apt-get -y autoremove && apt-get -y autoclean \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
