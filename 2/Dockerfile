@@ -5,7 +5,7 @@ MAINTAINER Rui Marinho <ruipmarinho@gmail.com> (@ruimarinho)
 ENV LD_LIBRARY_PATH=/opt/z-way-server/libs
 ENV PATH=/opt/z-way-server:$PATH
 ENV DEBIAN_FRONTEND noninteractive
-ENV ZWAY_VERSION=3.0.6
+ENV ZWAY_VERSION=3.1.1
 
 #install deps
 RUN apt-get -y update \
